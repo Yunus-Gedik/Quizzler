@@ -56,6 +56,8 @@ struct QuizBrain {
    mutating func nextQuestion(){
       if (index + 1 == quiz.count){
          index = 0;
+         correct = 0;
+         wrong = 0;
       }
       else{
          index += 1
