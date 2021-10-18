@@ -12,12 +12,14 @@ class ViewController: UIViewController {
    
    
    @IBOutlet weak var questionText: UILabel!
-   @IBOutlet weak var trueButton: UIButton!
-   @IBOutlet weak var falseButton: UIButton!
    @IBOutlet weak var progressBar: UIProgressView!
    @IBOutlet weak var correctText: UILabel!
    @IBOutlet weak var wrongText: UILabel!
-
+   @IBOutlet weak var firstChoice: UIButton!
+   @IBOutlet weak var secondChoice: UIButton!
+   @IBOutlet weak var thirdChoice: UIButton!
+   
+   
    var quizBrain = QuizBrain();
    
    override func viewDidLoad() {
@@ -41,10 +43,19 @@ class ViewController: UIViewController {
    }
    
    @objc func updateGUI(){
-      falseButton.backgroundColor = UIColor.clear
-      trueButton.backgroundColor = UIColor.clear
+      firstChoice.backgroundColor = UIColor.clear
+      secondChoice.backgroundColor = UIColor.clear
+      thirdChoice.backgroundColor = UIColor.clear
       progressBar.progress = quizBrain.getProgress();
+      
       questionText.text = quizBrain.getQuestion();
+      
+      let answers = quizBrain.getAnswers();
+      
+      firstChoice.setTitle(answers[0], for: .normal)
+      secondChoice.setTitle(answers[1], for: .normal)
+      thirdChoice.setTitle(answers[2], for: .normal)
+      
       correctText.text = "Correct Answer Count: " + String(quizBrain.getCorrectCount());
       wrongText.text = "Wrong Answer Count: "  + String(quizBrain.getWrongCount());
    }
